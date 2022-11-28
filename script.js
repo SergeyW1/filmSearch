@@ -103,7 +103,7 @@ async function openModal(id) {
 	document.querySelector('.modal__movie-time').textContent =
 		`${respData.filmLength === null || respData.filmLength === 'null' ? 'Не указано' : respData.filmLength} мин.`
 	document.querySelector('.modal__movie-year').textContent = `${respData.year}`
-	document.querySelector('.modal__movie-site').src = `${respData.webUrl}`
+	document.querySelector('.modal__movie-site').href = `${respData.webUrl}`
 	document.querySelector('.modal__movie-genre').textContent = `${respData.genres.map(item => ` ${item.genre}`)}`
 
 	const btn = document.querySelector('.modal__button-close');
