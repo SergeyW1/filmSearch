@@ -94,7 +94,8 @@ async function openModal(id) {
 	// console.log(respData)
 
 	document.querySelector('.modal__movie-backdrop').src = `${respData.posterUrl}`
-	document.querySelector('.modal__movie-title').textContent = `${respData.nameRu ? respData.nameRu : respData.nameEn ? respData.nameEn : respData.nameOriginal} (${respData.year})`
+	document.querySelector('.modal__movie-title').textContent = 
+	`${respData.nameRu ? respData.nameRu : respData.nameEn ? respData.nameEn : respData.nameOriginal} (${respData.year})`
 	respData.countries.forEach(item => {
 		document.querySelector('.modal__movie-country').textContent = `${item.country}`
 	})
