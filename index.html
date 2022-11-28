@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Movie App</title>
+	<link rel="stylesheet" href="./style.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+	<header class="container">
+		<div class="header__content">
+			<a href="index.html" class="header__logo">MovieApp</a>
+			<form action="">
+				<input type="search" class="header__search" placeholder="Поиск">
+				<div class="btn"></div>
+			</form>
+		</div>
+	</header>
+	<div class="container">
+		<template id="temp__movies">
+			<div class="movie">
+				<div class="movie___cover--inner">
+					<img src="http://kinohod.ru/o/9e/69/9e69586c-47de-4a29-bb68-eeff4ef956d5.jpg" alt="BTS" class="movie__cover">
+					<div class="movie__cover--darkened"></div>
+				</div>
+				<div class="movie__info">
+					<div class="movie__title">BTS: Открой свою душу</div>
+					<div class="movie__year"></div>
+					<div class="movie__category"></div>
+					<div class="movie__average">9</div>
+				</div>
+			</div>
+		</template>
+		<div class="modal">
+			<div class="modal__card">
+				<img src="http://kinohod.ru/o/9e/69/9e69586c-47de-4a29-bb68-eeff4ef956d5.jpg" alt=""
+					class="modal__movie-backdrop">
+				<div class="modal__details">
+					<div class="modal__movie-title"></div>
+					<div class="modal__movie-overview"></div>
+					<div class="modal__movie-info">
+						<h3>О фильме</h3>
+						<div class="loader"></div>
+						<div class="modal__movie-info-content">
+							<div class="modal__movie-left">Год производства</div>
+							<div class="modal__movie-year modal__movie-right "></div>
+						</div>
+						<div class="modal__movie-info-content">
+							<div class="modal__movie-left">Страна</div>
+							<div class="modal__movie-country modal__movie-right "></div>
+						</div>
+						<div class="modal__movie-info-content">
+							<div class="modal__movie-left">Жанр</div>
+							<div class="modal__movie-genre modal__movie-right "></div>
+						</div>
+						<div class="modal__movie-info-content">
+							<div class="modal__movie-left">Время</div>
+							<div class="modal__movie-time modal__movie-right "></div>
+						</div>
+						<div class="modal__movie-info-content">
+							<div class="modal__movie-left">Сайт</div>
+							<div class="modal__movie-right"><a class="modal__movie-site">Перейти</a></div>
+						</div>
+					</div>
+				</div>
+				<div class="modal__button-close"></div>
+			</div>
+		</div>
+		<div class="movies">
+		</div>
+	</div>
+	<script src="/script.js"></script>
+</body>
+
+</html>
