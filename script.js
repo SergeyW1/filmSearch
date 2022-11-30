@@ -19,12 +19,23 @@ async function getMovies(url) {
 		console.error('Ошибка API:', err);
 	}
 }
-const temp = document.querySelector('#temp__movies')
-const firstClone = temp.content.cloneNode(true)
 getMovies(API_URL_POPULAR)
+
+function getClassByRate(vote) {
+	let num = parseFloat(vote)
+
+	if (num > 10) {
+		return 'В ожидании'
+	} else if (vote === null || vote === 'null') {
+		return 'Нету рейтинга'
+	} else {
+		return vote;
+	}
+}
 
 async function showMovies(data) {
 	const moviesEl = document.querySelector('.movies')
+
 
 	moviesEl.innerHTML = ''
 
@@ -55,17 +66,8 @@ async function showMovies(data) {
 	})
 }
 
-function getClassByRate(vote) {
-	let num = parseFloat(vote)
 
-	if (num > 10) {
-		return 'В ожидании'
-	} else if (vote === null || vote === 'null') {
-		return 'Нету рейтинга'
-	} else {
-		return vote;
-	}
-}
+
 
 const form = document.querySelector('form')
 const headerSearch = document.querySelector('.header__search')
@@ -91,18 +93,21 @@ async function openModal(id) {
 		}
 	})
 	const respData = await response.json()
-	// console.log(respData)
+	console.log(respData)
+
+
+	document.body.classList.add('stop-scrolling')
 
 	document.querySelector('.modal__movie-backdrop').src = `${respData.posterUrl}`
-	document.querySelector('.modal__movie-title').textContent = 
-	`${respData.nameRu ? respData.nameRu : respData.nameEn ? respData.nameEn : respData.nameOriginal} (${respData.year})`
+	document.querySelector('.modal__movie-title').textContent =
+		`${respData.nameRu ? respData.nameRu : respData.nameEn ? respData.nameEn : respData.nameOriginal} (${respData.year})`
 	respData.countries.forEach(item => {
 		document.querySelector('.modal__movie-country').textContent = `${item.country}`
 	})
 	document.querySelector('.modal__movie-overview').textContent =
 		`${respData.description === null || respData.description === 'null' ? 'Нету описания' : respData.description}`
 	document.querySelector('.modal__movie-time').textContent =
-		`${respData.filmLength === null || respData.filmLength === 'null' ? 'Не указано' : respData.filmLength} мин.`
+		`${respData.filmLength === null || respData.filmLength === 'null' ? 'Не указано мин.' : respData.filmLength + ' мин.'}`
 	document.querySelector('.modal__movie-year').textContent = `${respData.year}`
 	document.querySelector('.modal__movie-site').href = `${respData.webUrl}`
 	document.querySelector('.modal__movie-genre').textContent = `${respData.genres.map(item => ` ${item.genre}`)}`
@@ -114,7 +119,8 @@ async function openModal(id) {
 
 
 function closeModal() {
-	modalEl.classList.remove('modal__show')
+	modalEl.classList.toggle('modal__show')
+	document.body.classList.remove('stop-scrolling')
 }
 
 window.addEventListener('click', (e) => {
@@ -128,6 +134,24 @@ window.addEventListener('keydown', (e) => {
 		closeModal()
 	}
 })
+
+document.querySelector('.toggler-slider')
+	.addEventListener('click', back)
+
+function back() {
+	document.body.classList.toggle('checkBackgroundBody')
+	const title = document.querySelector('.header__logo')
+	const movieTitle = document.querySelectorAll('.movie__title')
+	console.log(movieTitle)
+	const colorWhite = 'checkColor'
+	if (document.body.classList.contains('checkBackgroundBody')) {
+		title.id = colorWhite
+	} else {
+		title.removeAttribute('id')
+	}
+}
+
+
 
 
 

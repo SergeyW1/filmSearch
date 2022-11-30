@@ -22,6 +22,12 @@
 				<div class="btn"></div>
 			</form>
 		</div>
+		<label class="toggler-wrapper style-1">
+			<input type="checkbox" >
+			<div class="toggler-slider">
+				<div class="toggler-knob"></div>
+			</div>
+		</label>
 	</header>
 	<div class="container">
 		<template id="temp__movies">
@@ -39,40 +45,56 @@
 			</div>
 		</template>
 		<div class="modal">
-			<div class="modal__card">
-				<img src="http://kinohod.ru/o/9e/69/9e69586c-47de-4a29-bb68-eeff4ef956d5.jpg" alt=""
-					class="modal__movie-backdrop">
-				<div class="modal__details">
-					<div class="modal__movie-title"></div>
-					<div class="modal__movie-overview"></div>
-					<div class="modal__movie-info">
-						<h3>О фильме</h3>
-						<div class="loader"></div>
-						<div class="modal__movie-info-content">
-							<div class="modal__movie-left">Год производства</div>
-							<div class="modal__movie-year modal__movie-right "></div>
-						</div>
-						<div class="modal__movie-info-content">
-							<div class="modal__movie-left">Страна</div>
-							<div class="modal__movie-country modal__movie-right "></div>
-						</div>
-						<div class="modal__movie-info-content">
-							<div class="modal__movie-left">Жанр</div>
-							<div class="modal__movie-genre modal__movie-right "></div>
-						</div>
-						<div class="modal__movie-info-content">
-							<div class="modal__movie-left">Время</div>
-							<div class="modal__movie-time modal__movie-right "></div>
-						</div>
-						<div class="modal__movie-info-content">
-							<div class="modal__movie-left">Сайт</div>
-							<div class="modal__movie-right"><a class="modal__movie-site" target="_blank">Перейти</a></div>
+			<div class="modal__content">
+				<div class="modal__card">
+					<img src="http://kinohod.ru/o/9e/69/9e69586c-47de-4a29-bb68-eeff4ef956d5.jpg" alt=""
+						class="modal__movie-backdrop">
+					<div class="modal__details">
+						<div class="modal__movie-title"></div>
+						<div class="modal__movie-overview"></div>
+						<div class="modal__movie-info">
+							<h3>О фильме</h3>
+							<div class="modal__movie-info-content">
+								<div class="modal__movie-left">Год производства</div>
+								<div class="modal__movie-year modal__movie-right "></div>
+							</div>
+							<div class="modal__movie-info-content">
+								<div class="modal__movie-left">Страна</div>
+								<div class="modal__movie-country modal__movie-right "></div>
+							</div>
+							<div class="modal__movie-info-content">
+								<div class="modal__movie-left">Жанр</div>
+								<div class="modal__movie-genre modal__movie-right "></div>
+							</div>
+							<div class="modal__movie-info-content">
+								<div class="modal__movie-left">Время</div>
+								<div class="modal__movie-time modal__movie-right "></div>
+							</div>
+							<div class="modal__movie-info-content">
+								<div class="modal__movie-left">Сайт</div>
+								<div class="modal__movie-right"><a class="modal__movie-site" target="_blank">Перейти</a></div>
+							</div>
 						</div>
 					</div>
+					<div class="modal__button-close"></div>
 				</div>
-				<div class="modal__button-close"></div>
 			</div>
 		</div>
+		<!-- <div id="openModal" class="modal">
+			<div class="modal__card">
+				<div class="modal__movie">
+						<img src="http://kinohod.ru/o/9e/69/9e69586c-47de-4a29-bb68-eeff4ef956d5.jpg" alt="" 
+						class="modal__content-backdrop">
+						<div class="modal__details">
+							<div class="modal__movie-title"></div>
+							<div class="modal__movie-overview"></div>
+							<div class="modal__movie-info">
+
+							</div>
+						</div>
+				</div>
+			</div>
+		</div> -->
 		<div class="movies">
 		</div>
 	</div>
