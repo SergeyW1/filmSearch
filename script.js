@@ -66,9 +66,6 @@ async function showMovies(data) {
 	})
 }
 
-
-
-
 const form = document.querySelector('form')
 const headerSearch = document.querySelector('.header__search')
 
@@ -95,9 +92,7 @@ async function openModal(id) {
 	const respData = await response.json()
 	console.log(respData)
 
-
 	document.body.classList.add('stop-scrolling')
-
 	document.querySelector('.modal__movie-backdrop').src = `${respData.posterUrl}`
 	document.querySelector('.modal__movie-title').textContent =
 		`${respData.nameRu ? respData.nameRu : respData.nameEn ? respData.nameEn : respData.nameOriginal} (${respData.year})`
@@ -119,7 +114,7 @@ async function openModal(id) {
 
 
 function closeModal() {
-	modalEl.classList.toggle('modal__show')
+	modalEl.classList.remove('modal__show')
 	document.body.classList.remove('stop-scrolling')
 }
 
@@ -136,20 +131,16 @@ window.addEventListener('keydown', (e) => {
 })
 
 document.querySelector('.toggler-slider')
-	.addEventListener('click', back)
+	.addEventListener('click', back) 
 
 function back() {
-	document.body.classList.toggle('checkBackgroundBody')
-	const title = document.querySelector('.header__logo')
-	const movieTitle = document.querySelectorAll('.movie__title')
-	console.log(movieTitle)
-	const colorWhite = 'checkColor'
-	if (document.body.classList.contains('checkBackgroundBody')) {
-		title.id = colorWhite
-	} else {
-		title.removeAttribute('id')
-	}
+	document.body.classList.toggle('checkBackgroundWhite')
+	document.querySelector('.header__logo').classList.toggle('checkColor')
+	document.querySelector('.header__search').classList.toggle('header__search-toggle')
+	document.querySelector('.toggler-wrapper .toggler-slider').classList.toggle('checkBackgroundBlack')
 }
+
+
 
 
 
