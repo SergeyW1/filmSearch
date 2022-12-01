@@ -36,13 +36,12 @@ function getClassByRate(vote) {
 async function showMovies(data) {
 	const moviesEl = document.querySelector('.movies')
 
-
 	moviesEl.innerHTML = ''
-
+	
 	data.films.forEach(movie => {
 		const temp = document.querySelector('#temp__movies')
 		const firstClone = temp.content.cloneNode(true)
-
+		back()
 		firstClone.querySelector('.movie__cover').src = `${movie.posterUrl}`;
 		firstClone.querySelector('.movie__title').textContent = `${movie.nameRu ? movie.nameRu : movie.nameEn}`;
 		firstClone.querySelector('.movie__year').textContent = `${movie.year}`;
@@ -50,6 +49,13 @@ async function showMovies(data) {
 		movie.genres.forEach(item => {
 			const contentGenre = document.createElement('span')
 			contentGenre.textContent = item.genre
+			for(let i = 0; i < contentGenre.length; i++) {
+				if (contentGenre[i] === contentGenre[i.length - 1]) {
+					contentGenre[i]
+				} else {
+					contentGenre[i] + ','
+				}
+			}
 			movieCategory.append(contentGenre)
 		})
 		const movieAverage = firstClone.querySelector('.movie__average')
@@ -69,13 +75,7 @@ async function showMovies(data) {
 const form = document.querySelector('form')
 const headerSearch = document.querySelector('.header__search')
 
-form.addEventListener('submit', (e) => {
-	e.preventDefault()
-	const apiSearchUrl = `${API_URL_SEARCH}${headerSearch.value}`
-	if (headerSearch.value) {
-		getMovies(apiSearchUrl)
-	}
-})
+
 
 const modalEl = document.querySelector('.modal')
 
@@ -92,7 +92,6 @@ async function openModal(id) {
 	const respData = await response.json()
 	console.log(respData)
 
-	document.body.classList.add('stop-scrolling')
 	document.querySelector('.modal__movie-backdrop').src = `${respData.posterUrl}`
 	document.querySelector('.modal__movie-title').textContent =
 		`${respData.nameRu ? respData.nameRu : respData.nameEn ? respData.nameEn : respData.nameOriginal} (${respData.year})`
@@ -111,11 +110,18 @@ async function openModal(id) {
 	btn.addEventListener('click', closeModal)
 }
 
+form.addEventListener('submit', (e) => {
+	e.preventDefault()
+
+	const apiSearchUrl = `${API_URL_SEARCH}${headerSearch.value}`
+	if (headerSearch.value) {
+		getMovies(apiSearchUrl)
+	}
+})
 
 
 function closeModal() {
 	modalEl.classList.remove('modal__show')
-	document.body.classList.remove('stop-scrolling')
 }
 
 window.addEventListener('click', (e) => {
@@ -130,16 +136,65 @@ window.addEventListener('keydown', (e) => {
 	}
 })
 
-document.querySelector('.toggler-slider')
-	.addEventListener('click', back) 
+
+
+
+document.querySelector('.toggler-slider').addEventListener('click', back)
 
 function back() {
-	document.body.classList.toggle('checkBackgroundWhite')
-	document.querySelector('.header__logo').classList.toggle('checkColor')
-	document.querySelector('.header__search').classList.toggle('header__search-toggle')
-	document.querySelector('.toggler-wrapper .toggler-slider').classList.toggle('checkBackgroundBlack')
+	const movieTitle = document.querySelectorAll('.movie__title ')
+	const movieCategory = document.querySelectorAll('.movie__category')
+	document.body.classList.toggle('check__background-white')
+	if (document.body.classList.contains('check__background-white')) {
+		document.querySelector('.header__logo').classList.add('check__color')
+		document.querySelector('.header__search').classList.add('header__search-toggle')
+		document.querySelector('.toggler-wrapper .toggler-slider').classList.add('check__background-black')
+		for (let i = 0; i < movieTitle.length; i++) {
+			movieTitle[i].classList.add('check__color')
+		}
+		for (let i = 0; i < movieCategory.length; i++) {
+			movieCategory[i].classList.add('check__color-category')
+		}
+		document.querySelector('.modal__card').classList.add('modal__card-toggle')
+		document.querySelector('.modal__movie-overview').classList.add('modal__overview-toggle')
+		document.querySelector('.modal__movie-site').classList.add('check__color')
+		document.querySelector('.modal__button-close').classList.add('button__close-toggle')
+	} else {
+		document.querySelector('.header__logo').classList.remove('check__color')
+		document.querySelector('.header__search').classList.remove('header__search-toggle')
+		document.querySelector('.toggler-wrapper .toggler-slider').classList.remove('check__background-black')
+		for (let i = 0; i < movieTitle.length; i++) {
+			movieTitle[i].classList.remove('check__color')
+		}
+		for (let i = 0; i < movieCategory.length; i++) {
+			movieCategory[i].classList.remove('check__color-category')
+		}
+		document.querySelector('.modal__card').classList.remove('modal__card-toggle')
+		document.querySelector('.modal__movie-overview').classList.remove('modal__overview-toggle')
+		document.querySelector('.modal__movie-site').classList.remove('check__color')
+		document.querySelector('.modal__button-close').classList.remove('button__close-toggle')
+	}
 }
 
+
+// function back() {
+// 	const movieTitle = document.querySelectorAll('.movie__title ')
+// 	const movieCategory = document.querySelectorAll('.movie__category')
+// 	document.body.classList.toggle('check__background-white')
+// 	document.querySelector('.header__logo').classList.toggle('check__color')
+// 	document.querySelector('.header__search').classList.toggle('header__search-toggle')
+// 	document.querySelector('.toggler-wrapper .toggler-slider').classList.toggle('check__background-black')
+// 	for(let i = 0; i < movieTitle.length; i++) {
+// 		movieTitle[i].classList.toggle('check__color')
+// 	} 
+// 	for(let i = 0; i < movieCategory.length; i++) {
+// 		movieCategory[i].classList.toggle('check__color-category')
+// 	}
+// 	document.querySelector('.modal__card').classList.toggle('modal__card-toggle')
+// 	document.querySelector('.modal__movie-overview').classList.toggle('modal__overview-toggle')
+// 	document.querySelector('.modal__movie-site').classList.toggle('check__color')
+// 	document.querySelector('.modal__button-close').classList.toggle('button__close-toggle')
+// }
 
 
 
