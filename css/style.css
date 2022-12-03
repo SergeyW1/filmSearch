@@ -336,10 +336,6 @@ ul li {
 	font-weight: 600;
 }
 
-.check__color-category {
-	color: #e91e63;
-}
-
 .check__background-white {
 	background-color: #EDEEF0;
 }
@@ -399,4 +395,13 @@ ul li {
 
 .button__close-toggle::after {
 	transform: rotate(-45deg);
+}
+
+.check__background-white .movie__title {
+	color: #5f6368;
+	font-weight: 600;
+}
+
+.check__background-white .movie__category {
+	color: #e91e63;
 }
