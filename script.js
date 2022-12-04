@@ -37,8 +37,10 @@ async function showMovies(data) {
 	const moviesEl = document.querySelector('.movies')
 
 	moviesEl.innerHTML = ''
-
-	data.films.forEach(movie => {
+	const dataFilms = data.films.slice(0, 6)
+	// console.log(data.films)
+	// console.log(dataFilms)
+	dataFilms.forEach(movie => {
 		const temp = document.querySelector('#temp__movies')
 		const firstClone = temp.content.cloneNode(true)
 
@@ -46,18 +48,7 @@ async function showMovies(data) {
 		firstClone.querySelector('.movie__title').textContent = `${movie.nameRu ? movie.nameRu : movie.nameEn}`;
 		firstClone.querySelector('.movie__year').textContent = `${movie.year}`;
 		const movieCategory = firstClone.querySelector('.movie__category')
-		movie.genres.forEach(item => {
-			const contentGenre = document.createElement('span')
-			contentGenre.textContent = item.genre
-			for (let i = 0; i < contentGenre.length; i++) {
-				if (contentGenre[i] === contentGenre[i.length - 1]) {
-					contentGenre[i]
-				} else {
-					contentGenre[i] + ','
-				}
-			}
-			movieCategory.append(contentGenre)
-		})
+		movieCategory.textContent = movie.genres.map(item => ` ${item.genre}`)
 		const movieAverage = firstClone.querySelector('.movie__average')
 		movieAverage.textContent = `${getClassByRate(movie.rating)}`;
 		if (movie.rating >= 7) {
@@ -159,9 +150,6 @@ function back () {
 	modalSite.classList.toggle('check__color')
 	btnModalClose.classList.toggle('button__close-toggle')
 }
-
-
-
 
 
 
