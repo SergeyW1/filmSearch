@@ -41,7 +41,7 @@ async function showMovies(data) {
 	data.films.forEach(movie => {
 		const temp = document.querySelector('#temp__movies')
 		const firstClone = temp.content.cloneNode(true)
-		
+
 		firstClone.querySelector('.movie__cover').src = `${movie.posterUrl}`;
 		firstClone.querySelector('.movie__title').textContent = `${movie.nameRu ? movie.nameRu : movie.nameEn}`;
 		firstClone.querySelector('.movie__year').textContent = `${movie.year}`;
@@ -159,8 +159,6 @@ function back () {
 	modalSite.classList.toggle('check__color')
 	btnModalClose.classList.toggle('button__close-toggle')
 }
-
-
 
 
 
