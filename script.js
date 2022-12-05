@@ -1,7 +1,12 @@
+// import {changeTheme} from "./theme";
+
+
+
 const API_KEY = 'f95b2b95-3a4f-444a-b085-0700a3ff3270'
 const API_URL_POPULAR = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1'
 const API_URL_SEARCH = 'https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword='
 const API_URL_INFO = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/'
+let films = []
 
 async function getMovies(url) {
 	try {
@@ -13,7 +18,9 @@ async function getMovies(url) {
 			}
 		})
 		const respData = await response.json()
-		await showMovies(respData)
+		console.log(films)
+		films = respData.films
+		await showMovies(films.slice(0, 6))
 		console.log(respData)
 	} catch (err) {
 		console.error('Ошибка API:', err);
@@ -35,38 +42,49 @@ function getClassByRate(vote) {
 
 async function showMovies(data) {
 	const moviesEl = document.querySelector('.movies')
-
+	
 	moviesEl.innerHTML = ''
-	const dataFilms = data.films.slice(0, 6)
-	// console.log(data.films)
-	// console.log(dataFilms)
-	dataFilms.forEach(movie => {
+
+	data.forEach(movie => {
 		const temp = document.querySelector('#temp__movies')
 		const firstClone = temp.content.cloneNode(true)
-
 		firstClone.querySelector('.movie__cover').src = `${movie.posterUrl}`;
-		firstClone.querySelector('.movie__title').textContent = `${movie.nameRu ? movie.nameRu : movie.nameEn}`;
+		firstClone.querySelector('.movie__title').textContent = `${movie.nameRu ?? movie.nameEn}`;
 		firstClone.querySelector('.movie__year').textContent = `${movie.year}`;
 		const movieCategory = firstClone.querySelector('.movie__category')
-		movieCategory.textContent = movie.genres.map(item => ` ${item.genre}`)
+		movieCategory.textContent = movie.genres.map(item => ` ${item.genre}`).splice(0, 3)
 		const movieAverage = firstClone.querySelector('.movie__average')
 		movieAverage.textContent = `${getClassByRate(movie.rating)}`;
-		if (movie.rating >= 7) {
-			movieAverage.classList.add('movie__average--green')
-		} else if (movie.rating >= 6) {
-			movieAverage.classList.add('movie__average--grey')
-		} else if (movie.rating > 0) {
-			movieAverage.classList.add('movie__average--red')
-		}
+		movieRating(movie.rating)
 		firstClone.querySelector('.movie___cover--inner').addEventListener('click', () => openModal(movie.filmId))
 		moviesEl.append(firstClone)
 		changeTheme()
 	})
 }
 
+function movieRating(movie) {
+	const temp = document.querySelector('#temp__movies')
+	const firstClone = temp.content.cloneNode(true)
+	const movieAverage = firstClone.querySelector('.movie__average')
+	if (movie >= 7) {
+		movieAverage.classList.add('movie__average--green')
+	} else if (movie >= 6) {
+		movieAverage.classList.add('movie__average--grey')
+	} else if (movie > 0) {
+		movieAverage.classList.add('movie__average--red')
+	}
+}
+
 const form = document.querySelector('form')
+// const headerLogo = document.querySelector('.header__logo')
+form.addEventListener('submit', (e) => {
+	e.preventDefault()
 
-
+	const apiSearchUrl = `${API_URL_SEARCH}${headerSearch.value}`
+	if (headerSearch.value) {
+		getMovies(apiSearchUrl)
+	}
+})
 
 
 const modalEl = document.querySelector('.modal')
@@ -94,21 +112,12 @@ async function openModal(id) {
 		`${respData.filmLength === null || respData.filmLength === 'null' ? 'Не указано мин.' : respData.filmLength + ' мин.'}`
 	document.querySelector('.modal__movie-year').textContent = `${respData.year}`
 	document.querySelector('.modal__movie-site').href = `${respData.webUrl}`
-	document.querySelector('.modal__movie-genre').textContent = `${respData.genres.map(item => ` ${item.genre}`)}`
+	document.querySelector('.modal__movie-genre').textContent = `${respData.genres.map(item => ` ${item.genre}`).splice(0, 4)}`
 
 	const btn = document.querySelector('.modal__button-close');
 	btn.addEventListener('click', closeModal)
 	modalEl.classList.add('modal__show')
 }
-
-form.addEventListener('submit', (e) => {
-	e.preventDefault()
-
-	const apiSearchUrl = `${API_URL_SEARCH}${headerSearch.value}`
-	if (headerSearch.value) {
-		getMovies(apiSearchUrl)
-	}
-})
 
 
 function closeModal() {
@@ -128,7 +137,6 @@ window.addEventListener('keydown', (e) => {
 })
 
 
-
 const headerLogo = document.querySelector('.header__logo')
 const headerSearch = document.querySelector('.header__search')
 const togglerSlider = document.querySelector('.toggler-slider')
@@ -140,7 +148,7 @@ const paginationConteiner = document.querySelector('.pagination__conteiner')
 
 togglerSlider.addEventListener('click', changeTheme)
 
-function changeTheme () {
+function changeTheme() {
 	document.body.classList.toggle('check__background-white')
 	headerLogo.classList.toggle('check__color')
 	headerSearch.classList.toggle('header__search-toggle')
@@ -154,11 +162,11 @@ function changeTheme () {
 	paginationConteiner.classList.toggle('pagination__conteiner-toggle')
 }
 
-
-
-
-
-
+document.querySelectorAll('.pagination__item').forEach((item, index) => {
+	item.addEventListener('click', () => {
+		showMovies(films.slice(index * 6, index * 6 + 6))
+	})
+})
 
 
 
