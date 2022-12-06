@@ -62,10 +62,15 @@ body {
 }
 
 .container {
+	display: flex;
+	flex-direction: column;
 	position: relative;
 	margin: 0 auto;
 	max-width: 1000px;
+	height: 955px;
 	padding: 0 10px;
+	align-items: center;
+	justify-content: flex-end;
 }
 
 .header__content {
@@ -92,6 +97,7 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	max-width: 1079px;
+	max-height: 892px;
 	margin: 0 auto;
 	justify-content: space-evenly;
 }
@@ -345,10 +351,7 @@ ul li {
 
 
 .pagination {
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 10px;
+	padding-top: 15px;
 	display: flex;
 	user-select: none;
 	justify-content: center;
@@ -489,4 +492,14 @@ ul li {
 
 .pagination__conteiner-toggle li:active {
 	color: #010101;
+}
+
+@media all and (max-width: 830px) {
+	.container {
+		height: 100%;
+	}
+	
+	.movies {
+		max-height: none;
+	}
 }
