@@ -1,4 +1,4 @@
-import { openModal, API_KEY} from './modules/modal.js'
+import { openModal, API_KEY } from './modules/modal.js'
 import { changeTheme, paginationConteiner } from './modules/changeTheme.js'
 
 
@@ -24,7 +24,7 @@ async function getMovies(url) {
 
 getMovies(API_URL_POPULAR)
 
-async function showMovies(data) {
+function showMovies(data) {
 	const moviesEl = document.querySelector('.movies')
 	moviesEl.innerHTML = ''
 	data.forEach(movie => {
@@ -40,8 +40,8 @@ async function showMovies(data) {
 		getByRating(movie.rating)
 		firstClone.querySelector('.movie___cover--inner').addEventListener('click', () => openModal(movie.filmId))
 		moviesEl.append(firstClone)
-		changeTheme()
 	})
+	changeTheme
 }
 
 function getClassByRate(vote) {
@@ -80,13 +80,14 @@ form.addEventListener('submit', (e) => {
 	}
 })
 
-document.querySelectorAll('.pagination__item').forEach((item, index) => {
+let paginationItem = document.querySelectorAll('.pagination__item')
+paginationItem.forEach((item, index) => {
 	item.dataset.index = index
 })
 
 paginationConteiner.addEventListener('click', (event) => {
-	if(event.target.classList.contains('pagination__item')) {
-		const index =	parseInt(event.target.dataset.index)
+	if (event.target.classList.contains('pagination__item')) {
+		const index = parseInt(event.target.dataset.index)
 		showMovies(films.slice(index * 6, index * 6 + 6))
 	}
 })
