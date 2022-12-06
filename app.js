@@ -1,7 +1,5 @@
-import { modalEl, openModal, API_KEY} from './modules/modal.js'
+import { openModal, API_KEY} from './modules/modal.js'
 import { changeTheme, togglerSlider } from './modules/changeTheme.js'
-
-
 
 
 const API_URL_POPULAR = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1'
@@ -30,9 +28,7 @@ getMovies(API_URL_POPULAR)
 
 async function showMovies(data) {
 	const moviesEl = document.querySelector('.movies')
-
 	moviesEl.innerHTML = ''
-
 	data.forEach(movie => {
 		const temp = document.querySelector('#temp__movies')
 		const firstClone = temp.content.cloneNode(true)
@@ -94,7 +90,6 @@ document.querySelectorAll('.pagination__item').forEach((item, index) => {
 		showMovies(films.slice(index * 6, index * 6 + 6))
 	})
 })
-
 
 
 

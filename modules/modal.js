@@ -1,6 +1,6 @@
 const API_URL_INFO = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/'
 export const API_KEY = 'f95b2b95-3a4f-444a-b085-0700a3ff3270'
-export const modalEl = document.querySelector('.modal')
+const modalEl = document.querySelector('.modal')
 
 export async function openModal(id) {
 	const response = await fetch(API_URL_INFO + id, {
