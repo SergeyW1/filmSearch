@@ -80,16 +80,20 @@ form.addEventListener('submit', (e) => {
 	}
 })
 
-let paginationItem = document.querySelectorAll('.pagination__item')
+const paginationItem = document.querySelectorAll('.pagination__item')
 paginationItem.forEach((item, index) => {
 	item.dataset.index = index
 })
+
+
+
+
 
 paginationConteiner.addEventListener('click', (event) => {
 	if (event.target.classList.contains('pagination__item')) {
 		const index = parseInt(event.target.dataset.index)
 		showMovies(films.slice(index * 6, index * 6 + 6))
-	}
+	} 
 })
 
 
