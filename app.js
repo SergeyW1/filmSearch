@@ -8,7 +8,6 @@ let films = []
 
 async function getMovies(url) {
 	try {
-		// headers нужен для того, чтобы получить доступ к этому API
 		const response = await fetch(url, {
 			headers: {
 				'Content-Type': 'application/json',
@@ -24,7 +23,6 @@ async function getMovies(url) {
 		console.error('Ошибка API:', err);
 	}
 }
-getMovies(API_URL_POPULAR)
 
 async function showMovies(data) {
 	const moviesEl = document.querySelector('.movies')
