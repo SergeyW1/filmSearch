@@ -1,4 +1,4 @@
-Project included:
+Project includs:
 - Top 20 Popular Movies;
 - Changing the theme from black to white;
 - Search for any movies, as well as getting information about them;
