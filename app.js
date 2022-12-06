@@ -16,7 +16,7 @@ async function getMovies(url) {
 		})
 		const respData = await response.json()
 		films = respData.films
-		await showMovies(films.slice(0, 6))
+		showMovies(films.slice(0, 6))
 	} catch (err) {
 		console.error('Ошибка API:', err);
 	}
@@ -80,21 +80,24 @@ form.addEventListener('submit', (e) => {
 	}
 })
 
+
 const paginationItem = document.querySelectorAll('.pagination__item')
-paginationItem.forEach((item, index) => {
-	item.dataset.index = index
+paginationConteiner.addEventListener('click', (event) => {
+	replacePagination(event)
 })
 
-
-
-
-
-paginationConteiner.addEventListener('click', (event) => {
+function replacePagination (event) {
+	paginationItem.forEach((item, index) => {
+		item.dataset.index = index
+	})
 	if (event.target.classList.contains('pagination__item')) {
 		const index = parseInt(event.target.dataset.index)
 		showMovies(films.slice(index * 6, index * 6 + 6))
 	} 
-})
+}
+
+
+
 
 
 

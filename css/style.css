@@ -12,7 +12,7 @@ body {
 .toggler-wrapper {
 	display: block;
 	width: 50px;
-	height: 25px;
+	height: 26px;
 	cursor: pointer;
 	position: absolute;
 	right: 0;
@@ -30,8 +30,8 @@ body {
 	border-radius: 100px;
 	top: 0;
 	left: 0;
-	width: 100%;
-	height: 100%;
+	width: 85%;
+	height: 85%;
 	-webkit-transition: all 300ms ease;
 	transition: all 300ms ease;
 }
@@ -43,15 +43,15 @@ body {
 }
 
 .toggler-wrapper.style-1 input[type="checkbox"]:checked+.toggler-slider .toggler-knob {
-	left: calc(100% - 19px - 3px);
+	left: calc(100% - 15px - 3px);
 }
 
 .toggler-wrapper.style-1 .toggler-knob {
-	width: calc(25px - 6px);
-	height: calc(25px - 6px);
+	width: calc(20px - 6px);
+	height: calc(20px - 6px);
 	border-radius: 50%;
-	left: 3px;
-	top: 3px;
+	left: 4px;
+	top: 4px;
 	background-color: #fff;
 }
 
@@ -68,10 +68,8 @@ body {
 	position: relative;
 	margin: 0 auto;
 	max-width: 1000px;
-	height: 955px;
 	padding: 0 10px;
 	align-items: center;
-	justify-content: flex-end;
 }
 
 .header__content {
@@ -84,7 +82,7 @@ body {
 .header__logo {
 	text-decoration: none;
 	color: aliceblue;
-	font-size: 32px;
+	font-size: 30px;
 }
 
 .header__search {
@@ -98,13 +96,13 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	max-width: 1079px;
-	max-height: 892px;
+	max-height: 824px;
 	margin: 0 auto;
 	justify-content: space-evenly;
 }
 
 .movie {
-	width: 210px;
+	width: 190px;
 	margin: 10px 30px 0 30px;
 	position: relative;
 }
@@ -118,7 +116,7 @@ body {
 
 .movie___cover--inner {
 	position: relative;
-	height: 330px;
+	height: 300px;
 }
 
 .movie__cover--darkened {
@@ -147,7 +145,7 @@ body {
 
 .movie__title {
 	color: #ffff;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 .movie__category {
@@ -489,7 +487,7 @@ ul li {
 }
 
 .pagination__conteiner-toggle {
-	background-color: #afafaf;
+	background-color: #e3e3e3;;
 }
 
 .pagination__conteiner-toggle li {
@@ -504,7 +502,7 @@ ul li {
 }
 
 
-@media all and (max-width: 830px) {
+@media all and (max-width: 787px) {
 	.container {
 		height: 100%;
 	}
@@ -519,7 +517,7 @@ ul li {
 
 	.header__content {
 		padding: 8px 0;
-		justify-content: space-around;
+		justify-content: space-between;
 	}
 
 	.header__logo {
@@ -532,8 +530,9 @@ ul li {
 	}
 
 	.toggler-wrapper.style-1 .toggler-knob {
-    width: calc(23px - 6px);
+    width: calc(20px - 6px);
     height: calc(20px - 6px); 
+		top: 3px;
 	}
 
 	.toggler-slider {
@@ -549,5 +548,16 @@ ul li {
 
 	.movie___cover--inner {
 		height: 160px;
+	}
+
+	.toggler-wrapper {
+		left: 97px;
+	}
+}
+
+@media all and (max-width: 339px) {
+	.toggler-wrapper {
+		left: -23px;
+    top: 50px;
 	}
 }
