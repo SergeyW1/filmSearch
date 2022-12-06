@@ -26,7 +26,7 @@ async function getMovies(url) {
 
 getMovies(API_URL_POPULAR)
 
-export async function showMovies(data) {
+async function showMovies(data) {
 	const moviesEl = document.querySelector('.movies')
 	moviesEl.innerHTML = ''
 	data.forEach(movie => {
