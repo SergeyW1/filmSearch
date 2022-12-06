@@ -1,5 +1,5 @@
 import { openModal, API_KEY} from './modules/modal.js'
-import { changeTheme, togglerSlider } from './modules/changeTheme.js'
+import { changeTheme } from './modules/changeTheme.js'
 
 
 const API_URL_POPULAR = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1'
@@ -23,6 +23,8 @@ async function getMovies(url) {
 		console.error('Ошибка API:', err);
 	}
 }
+
+getMovies(API_URL_POPULAR)
 
 async function showMovies(data) {
 	const moviesEl = document.querySelector('.movies')
@@ -80,14 +82,7 @@ form.addEventListener('submit', (e) => {
 	}
 })
 
-togglerSlider.addEventListener('click', changeTheme)
 
-document.querySelectorAll('.pagination__item').forEach((item, index) => {
-	console.log(showMovies(films.slice(index * 6, index * 6 + 6)))
-	item.addEventListener('click', () => {
-		showMovies(films.slice(index * 6, index * 6 + 6))
-	})
-})
 
 
 

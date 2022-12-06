@@ -20,3 +20,9 @@ export function changeTheme() {
 
 	paginationConteiner.classList.toggle('pagination__conteiner-toggle')
 }
+
+togglerSlider.addEventListener('click', changeTheme)
+
+paginationConteiner.addEventListener('click', (event) => {
+	console.log(event.target.classList.contains('pagination__item'))
+})
