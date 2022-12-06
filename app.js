@@ -96,6 +96,22 @@ function replacePagination (event) {
 	} 
 }
 
+paginationConteiner.addEventListener('click', (event) => {
+	if(event.target === paginationItem[0]) {
+		paginationItem[1].classList.remove('pagination__active')
+		paginationItem[2].classList.remove('pagination__active')
+		paginationItem[0].classList.add('pagination__active')
+	} else if (event.target === paginationItem[1]) {
+		paginationItem[0].classList.remove('pagination__active')
+		paginationItem[2].classList.remove('pagination__active')
+		paginationItem[1].classList.add('pagination__active')
+	} else if (event.target === paginationItem[2]) {
+		paginationItem[0].classList.remove('pagination__active')
+		paginationItem[1].classList.remove('pagination__active')
+		paginationItem[2].classList.add('pagination__active')
+	}
+})
+
 
 
 
