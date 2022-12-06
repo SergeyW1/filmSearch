@@ -16,9 +16,7 @@ async function getMovies(url) {
 		})
 		const respData = await response.json()
 		films = respData.films
-		console.log(films)
 		await showMovies(films.slice(0, 6))
-		console.log(respData)
 	} catch (err) {
 		console.error('Ошибка API:', err);
 	}
