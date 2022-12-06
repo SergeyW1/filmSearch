@@ -5,7 +5,7 @@ const modalCard = document.querySelector('.modal__card')
 const modalOverview = document.querySelector('.modal__movie-overview')
 const modalSite = document.querySelector('.modal__movie-site')
 const btnModalClose = document.querySelector('.modal__button-close')
-const paginationConteiner = document.querySelector('.pagination__conteiner')
+export const paginationConteiner = document.querySelector('.pagination__conteiner')
 
 export function changeTheme() {
 	document.body.classList.toggle('check__background-white')
@@ -23,6 +23,3 @@ export function changeTheme() {
 
 togglerSlider.addEventListener('click', changeTheme)
 
-paginationConteiner.addEventListener('click', (event) => {
-	console.log(event.target.classList.contains('pagination__item'))
-})

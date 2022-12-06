@@ -1,5 +1,5 @@
 import { openModal, API_KEY} from './modules/modal.js'
-import { changeTheme } from './modules/changeTheme.js'
+import { changeTheme, paginationConteiner } from './modules/changeTheme.js'
 
 
 const API_URL_POPULAR = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1'
@@ -26,7 +26,7 @@ async function getMovies(url) {
 
 getMovies(API_URL_POPULAR)
 
-async function showMovies(data) {
+export async function showMovies(data) {
 	const moviesEl = document.querySelector('.movies')
 	moviesEl.innerHTML = ''
 	data.forEach(movie => {
@@ -79,6 +79,17 @@ form.addEventListener('submit', (e) => {
 	const apiSearchUrl = `${API_URL_SEARCH}${headerSearch.value}`
 	if (headerSearch.value) {
 		getMovies(apiSearchUrl)
+	}
+})
+
+document.querySelectorAll('.pagination__item').forEach((item, index) => {
+	item.dataset.index = index
+})
+
+paginationConteiner.addEventListener('click', (event) => {
+	if(event.target.classList.contains('pagination__item')) {
+		const index =	parseInt(event.target.dataset.index)
+		showMovies(films.slice(index * 6, index * 6 + 6))
 	}
 })
 
