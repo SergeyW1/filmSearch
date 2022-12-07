@@ -510,7 +510,6 @@ ul li {
 	.movies {
 		max-height: none;
 	}
-
 }
 
 @media all and (max-width: 580px) {

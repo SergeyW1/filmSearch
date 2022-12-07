@@ -81,23 +81,27 @@ form.addEventListener('submit', (e) => {
 
 
 const paginationItem = document.querySelectorAll('.pagination__item')
-
+const el = document.querySelector('.pagination__active')
 paginationConteiner.addEventListener('click', (event) => {
 	if (event.target.classList.contains('pagination__item')) {
-		paginationItem.forEach(item => item.classList.remove('pagination__active'))
+		const el = document.querySelector('.pagination__active')
+		if (el) {
+			el.classList.remove('pagination__active')
+		}
 		event.target.classList.add('pagination__active')
 	}
 	replacePagination(event)
 })
 
-function replacePagination (event) {
+
+function replacePagination(event) {
 	paginationItem.forEach((item, index) => {
 		item.dataset.index = index
 	})
 	if (event.target.classList.contains('pagination__item')) {
 		const index = parseInt(event.target.dataset.index)
 		showMovies(films.slice(index * 6, index * 6 + 6))
-	} 
+	}
 }
 
 
