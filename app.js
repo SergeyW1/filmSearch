@@ -46,7 +46,6 @@ function showMovies(data) {
 
 function getClassByRate(vote) {
 	let num = parseFloat(vote)
-
 	if (num > 10) {
 		return 'В ожидании'
 	} else if (vote === null || vote === 'null') {
@@ -82,7 +81,14 @@ form.addEventListener('submit', (e) => {
 
 
 const paginationItem = document.querySelectorAll('.pagination__item')
+
 paginationConteiner.addEventListener('click', (event) => {
+	if (!event.target.classList.contains('pagination__active')) {
+		paginationItem.forEach(item => {
+			item.classList.remove('pagination__active')
+		})
+		event.target.classList.add('pagination__active')
+	}
 	replacePagination(event)
 })
 
@@ -96,21 +102,8 @@ function replacePagination (event) {
 	} 
 }
 
-paginationConteiner.addEventListener('click', (event) => {
-	if(event.target === paginationItem[0]) {
-		paginationItem[1].classList.remove('pagination__active')
-		paginationItem[2].classList.remove('pagination__active')
-		paginationItem[0].classList.add('pagination__active')
-	} else if (event.target === paginationItem[1]) {
-		paginationItem[0].classList.remove('pagination__active')
-		paginationItem[2].classList.remove('pagination__active')
-		paginationItem[1].classList.add('pagination__active')
-	} else if (event.target === paginationItem[2]) {
-		paginationItem[0].classList.remove('pagination__active')
-		paginationItem[1].classList.remove('pagination__active')
-		paginationItem[2].classList.add('pagination__active')
-	}
-})
+
+
 
 
 
