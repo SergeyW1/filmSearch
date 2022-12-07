@@ -83,10 +83,8 @@ form.addEventListener('submit', (e) => {
 const paginationItem = document.querySelectorAll('.pagination__item')
 
 paginationConteiner.addEventListener('click', (event) => {
-	if (!event.target.classList.contains('pagination__active')) {
-		paginationItem.forEach(item => {
-			item.classList.remove('pagination__active')
-		})
+	if (event.target.classList.contains('pagination__item')) {
+		paginationItem.forEach(item => item.classList.remove('pagination__active'))
 		event.target.classList.add('pagination__active')
 	}
 	replacePagination(event)

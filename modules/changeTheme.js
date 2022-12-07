@@ -1,11 +1,11 @@
 const headerLogo = document.querySelector('.header__logo')
 const headerSearch = document.querySelector('.header__search')
-export const togglerSlider = document.querySelector('.toggler-slider')
 const modalCard = document.querySelector('.modal__card')
 const modalOverview = document.querySelector('.modal__movie-overview')
 const modalSite = document.querySelector('.modal__movie-site')
 const btnModalClose = document.querySelector('.modal__button-close')
 export const paginationConteiner = document.querySelector('.pagination__conteiner')
+export const togglerSlider = document.querySelector('.toggler-slider')
 
 export function changeTheme() {
 	document.body.classList.toggle('check__background-white')
