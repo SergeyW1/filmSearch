@@ -1,10 +1,13 @@
 # Приложение по поиску кинофильмов
-## Project includes:
+## Проект включает в себя:
 ```
-- Top 20 Popular Movies;
-- Changing the theme from black to white;
-- Search for any movies, as well as getting information about them;
-- 18 cards with films are uploaded on the page, which can be found using pagination;
+- Топ-20 популярных фильмов;
+
+- Изменение темы с черной на белую;
+
+- Поиск любых фильмов, а также получение информации о них;
+
+- на страницу загружено 18 карточек с фильмами, которые можно найти с помощью разбивки на страницы;
 ```
 
 # Link: https://sergeyw1.github.io/filmSearch/
